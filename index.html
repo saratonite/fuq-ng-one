@@ -1,117 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <script src="node_modules/angular/angular.js"></script>
-    <script src="node_modules/angular-route/angular-route.js"></script>
-  </head>
-  <body ng-app="app">
-    <div ng-controller="MainCtrl">
-      <input type="text" ng-model="title" />
-      <h1>{{ title }}</h1>
-      <span ng-bind="title"></span>
-      <section ng-init="count=1;enableButton= true;">
-        Enable Button ? <input type="checkbox" ng-model="enableButton" />
-        <button ng-click="count = count + 1" ng-disabled="!enableButton">
-          Increment
-        </button>
-        <button ng-click="count = count - 1" ng-disabled="!enableButton">
-          Decrement
-        </button>
-        : Count <span>{{ count }}</span>
-      </section>
 
-      <!-- Loops / Filter / OrderBy -->
-      <section>
-        <table style="border:1px solid #ccc;width:300px;">
-          <thead>
-            <tr>
-              <th>S.no</th>
-              <th>Name</th>
-              <th>Age</th>
-            </tr>
-          </thead>
-          <tr>
-            <td colspan="3">
-              <input type="text" ng-model="searchText" />
-              <select ng-model="order">
-                <option ng-repeat="f in filters">{{ f }}</option>
-              </select>
-            </td>
-          </tr>
-          <tbody>
-            <tr
-              ng-repeat="student in students | filter: searchText | orderBy:order"
-            >
-              <td>{{ $index + 1 }}</td>
-              <td>{{ student.name | uppercase }}</td>
-              <td>{{ student.age }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-route/angular-route.js"></script>
+  <script src="node_modules/angular-animate/angular-animate.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-      <!-- Form validation -->
-      <section>
-        <style>
-          input.ng-invalid {
-            background-color: red;
-          }
-          input.ng-valid {
-            background-color: green;
-          }
+<body ng-app="app">
 
-          form.ng-pristine {
-            background-color: aqua;
-          }
-          form.ng-dirty {
-            background-color: beige;
-          }
-        </style>
-        <h2>Form validation</h2>
-        <form name="myForm" action="" novalidate>
-          <input
-            name="firstName"
-            ng-model="firstName"
-            ng-minlength="3"
-            type="text"
-            required
-          />
-          <div>
-            <span ng-show="myForm.firstName.$error.required"
-              >First name required</span
-            >
-            <span ng-show="myForm.firstName.$error.minlength"
-              >First name should have at least 3 characters</span
-            >
-          </div>
-          <button ng-disabled="!myForm.$valid">Submit</button>
-        </form>
-      </section>
-
-      <!-- ng-include -->
-      <section>
-        <h2>ng-include</h2>
-        <div ng-include="'/partials/p1.html'"></div>
-        <div ng-include="'/partials/p2.html'"></div>
-      </section>
-      <!-- Ajax example -->
-      <section>
-        <ul>
-          <li ng-repeat="employee in employees">{{ employee.name }}</li>
-        </ul>
-      </section>
-    </div>
-
-    <!-- Route App -->
-    <section>
+  <!-- Route App -->
+  <section ng-controller="AppController">
+    <div style="position: absolute;z-index:9999">
+      {{title}}
+      <button ng-click="toggleSlideDirection()">Toggle Slide Direction</button>
       <a href="#!">Home</a> <a href="#!about">About</a>
-      <div ng-view></div>
-    </section>
-    <script src="app.js"></script>
-    <script src="route-config.js"></script>
-  </body>
+      <a href="#!examples">Examples</a>
+
+    </div>
+    <main>
+
+      <div class="router-page" ng-class="dirClass" ng-view></div>
+    </main>
+  </section>
+  <script src="app.js"></script>
+  <script src="route-config.js"></script>
+</body>
+
 </html>

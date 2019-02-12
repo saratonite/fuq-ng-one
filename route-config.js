@@ -12,5 +12,11 @@ app.config([
       templateUrl: '/pages/about.html',
       controller: 'AboutController'
     })
+    $routeProvider.when('/examples', {
+
+      templateUrl: '/pages/examples.html',
+      controller: 'MainCtrl'
+
+    })
   }
 ])

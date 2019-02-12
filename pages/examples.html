@@ -1,0 +1,84 @@
+<div ng-controller="MainCtrl">
+    <input type="text" ng-model="title" />
+    <h1>{{ title }}</h1>
+    <span ng-bind="title"></span>
+    <section ng-init="count=1;enableButton= true;">
+        Enable Button ? <input type="checkbox" ng-model="enableButton" />
+        <button ng-click="count = count + 1" ng-disabled="!enableButton">
+            Increment
+        </button>
+        <button ng-click="count = count - 1" ng-disabled="!enableButton">
+            Decrement
+        </button>
+        : Count <span>{{ count }}</span>
+    </section>
+
+    <!-- Loops / Filter / OrderBy -->
+    <section>
+        <table style="border:1px solid #ccc;width:300px;">
+            <thead>
+                <tr>
+                    <th>S.no</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tr>
+                <td colspan="3">
+                    <input type="text" ng-model="searchText" />
+                    <select ng-model="order">
+                        <option ng-repeat="f in filters">{{ f }}</option>
+                    </select>
+                </td>
+            </tr>
+            <tbody>
+                <tr ng-repeat="student in students | filter: searchText | orderBy:order">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ student.name | uppercase }}</td>
+                    <td>{{ student.age }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Form validation -->
+    <section>
+        <style>
+            input.ng-invalid {
+              background-color: red;
+            }
+            input.ng-valid {
+              background-color: green;
+            }
+  
+            form.ng-pristine {
+              background-color: aqua;
+            }
+            form.ng-dirty {
+              background-color: beige;
+            }
+          </style>
+        <h2>Form validation</h2>
+        <form name="myForm" action="" novalidate>
+            <input name="firstName" ng-model="firstName" ng-minlength="3" type="text" required />
+            <div>
+                <span ng-show="myForm.firstName.$error.required">First name required</span>
+                <span ng-show="myForm.firstName.$error.minlength">First name should have at least 3 characters</span>
+            </div>
+            <button ng-disabled="!myForm.$valid">Submit</button>
+        </form>
+    </section>
+
+    <!-- ng-include -->
+    <section>
+        <h2>ng-include</h2>
+        <div ng-include="'/partials/p1.html'"></div>
+        <div ng-include="'/partials/p2.html'"></div>
+    </section>
+    <!-- Ajax example -->
+    <section>
+        <ul>
+            <li ng-repeat="employee in employees">{{ employee.name }}</li>
+        </ul>
+    </section>
+</div>
