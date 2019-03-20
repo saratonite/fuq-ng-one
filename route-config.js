@@ -1,6 +1,5 @@
-app.controller('HomeController', function ($scope) {})
-
 app.controller('AboutController', function ($scope) {})
+app.controller('HomeController', function ($scope) {})
 app.config([
   '$routeProvider',
   function ($routeProvider) {

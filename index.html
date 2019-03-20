@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <script src="node_modules/angular/angular.js"></script>
   <script src="node_modules/angular-route/angular-route.js"></script>
   <script src="node_modules/angular-animate/angular-animate.js"></script>
@@ -16,7 +17,7 @@
 <body ng-app="app">
 
   <!-- Route App -->
-  <section ng-controller="AppController">
+  <!-- <section ng-controller="AppController">
     <div style="position: absolute;z-index:9999">
       {{title}}
       <button ng-click="toggleSlideDirection()">Toggle Slide Direction</button>
@@ -28,9 +29,25 @@
 
       <div class="router-page" ng-class="dirClass" ng-view></div>
     </main>
+  </section> -->
+
+
+  <!-- Breadcrumb -->
+  <section class="breadcrumb" ng-controller="BreadcrumbController">
+    <div>
+      {{totalPages}}
+    </div>
+    <h1>{{selectedProduct.name}}</h1>
+    <div>
+      <a ng-click="clickPrev()">&larr;</a>
+      <div class="dot" ng-class="{'active': product.id === selectedProduct.id}" ng-repeat="product in getProducts()"
+        ng-click="onDotClick(product)">{{product.id}}</div>
+      <a ng-click="clickNext()">&rarr;</a>
+    </div>
   </section>
   <script src="app.js"></script>
-  <script src="route-config.js"></script>
+  <script src="controllers/BreadcrumbController.js"></script>
+  <!-- <script src="route-config.js"></script> -->
 </body>
 
 </html>
