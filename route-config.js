@@ -17,5 +17,9 @@ app.config([
       controller: 'MainCtrl'
 
     })
+    $routeProvider.when('/breadcrumbs', {
+      templateUrl: '/pages/breadcrumbs.html',
+      controller: 'BreadcrumbController'
+    })
   }
 ])

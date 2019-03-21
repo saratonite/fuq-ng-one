@@ -7,7 +7,7 @@ app.controller('AppController', function ($scope, $location) {
   $scope.title = 'Hello - World';
   $scope.dirClass = 'slide-left';
 
-  $scope.routes = ['/', '/about', '/examples']
+  $scope.routes = ['/', '/about', '/examples', '/breadcrumbs']
 
   $scope.currentRoute = '';
 

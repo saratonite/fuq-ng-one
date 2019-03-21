@@ -17,41 +17,25 @@
 <body ng-app="app">
 
   <!-- Route App -->
-  <!-- <section ng-controller="AppController">
+  <section ng-controller="AppController">
     <div style="position: absolute;z-index:9999">
       {{title}}
       <button ng-click="toggleSlideDirection()">Toggle Slide Direction</button>
       <a href="#!">Home</a> <a href="#!about">About</a>
       <a href="#!examples">Examples</a>
+      <a href="#!breadcrumbs">Breadcrumbs</a>
 
     </div>
     <main>
 
       <div class="router-page" ng-class="dirClass" ng-view></div>
     </main>
-  </section> -->
-
-
-  <!-- Breadcrumb -->
-  <section class="breadcrumb" ng-controller="BreadcrumbController">
-    <div>
-      {{totalPages}}
-      <p>ShowLHalf : {{ showLHalf }}</p>
-    </div>
-    <h1>{{selectedProduct.name}} / {{ activeIndex }} --- {{ products.length }}</h1>
-    <div>
-      <a ng-click="clickPrev()">&larr;</a>
-      <div class="dot-container" ng-repeat="product in currentPageSegment" ng-click="onDotClick(product)">
-        <div class="dot" ng-class="{'active': product.id === selectedProduct.id,'dot-rhalf': (showLHalf && $index ===0),'dot-lhalf': (showRHalf && $index ===(perPage-1))}">
-          {{product.id}}
-        </div>
-      </div>
-      <a ng-click="clickNext()">&rarr;</a>
-    </div>
   </section>
+
+
   <script src="app.js"></script>
   <script src="controllers/BreadcrumbController.js"></script>
-  <!-- <script src="route-config.js"></script> -->
+  <script src="route-config.js"></script>
 </body>
 
 </html>
